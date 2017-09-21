@@ -1,5 +1,7 @@
+import merged from 'obj-merged';
+
 class Tool {
-    formatDate(str) {
+    static formatDate(str) {
     var date = new Date(str);
     var time = new Date().getTime() - date.getTime(); //现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）
     if (time < 0) {
@@ -18,14 +20,16 @@ class Tool {
         return parseInt(time / 31536000000) + '年前';
     }
 }
-savelocalItem = function (key, value) {
+static localItem(key, value) {
     if (arguments.length == 1) {
         return localStorage.getItem(key);
     } else {
+        console.log('hi');
         return localStorage.setItem(key, value);
     }
 }
-removeLocalItem = function (key) {
+
+static removeLocalItem (key) {
     if (key) {
         return localStorage.removeItem(key);
     }
@@ -37,4 +41,4 @@ removeLocalItem = function (key) {
 
 
 
-export default Tool;
+export {merged,Tool};

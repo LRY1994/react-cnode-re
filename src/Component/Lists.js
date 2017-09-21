@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {NavLink} from'react-router-dom';
-import Tool from '../Service/Tool';
+import {Tool} from '../Service/Tool';
 import UserHeadImg from './Common/UserHeaderImg';
 import TabIcon from './Common/TabIcon'
-import'./List.less';
 
+import queryString from 'query-string'
 class ListItem extends Component {
     render() {
         let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = this.props;
@@ -38,7 +38,7 @@ class ListItem extends Component {
 }
 
 
-class List extends Component {
+class Lists extends Component {
     render() {
         return (
             <ul className="index-list">
@@ -52,4 +52,4 @@ class List extends Component {
     }
 }
 
-export default List;
+export default Lists;

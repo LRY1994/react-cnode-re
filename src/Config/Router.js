@@ -79,8 +79,7 @@ const RouteConfig = (
                 ))
             }     
             <Redirect from='' to="/home" />
-                 
-        
+                   
         </Switch>
     </Router>
 )

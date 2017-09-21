@@ -4,7 +4,7 @@ import{createStore,combineReducers,applyMiddleware} from 'redux';
 import{Provider} from 'react-redux';
 import './index.css';
 import router from './Config/Router';
-
+import {compose} from 'redux';
 
 import reducer from './Reducer/reducer';
 import thunk from 'redux-thunk';
@@ -15,9 +15,9 @@ import registerServiceWorker from './registerServiceWorker';
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const store = createStore(
-    // combineReducers(reducer),
-    applyMiddleware(thunk),
-    composeWithDevTools()
+    combineReducers(reducer),
+    compose(applyMiddleware(thunk),composeWithDevTools())
+    
 );
 
 ReactDOM.render(

@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import'./Footer.less';
+
 
 class Footer extends Component{
     
@@ -10,7 +10,7 @@ class Footer extends Component{
                
                 <ul className='menu' data-flex="box:mean">
                     <li> 
-                        <NavLink to='/'>
+                        <NavLink to='/home'>
                             <i className="iconfont icon-shouye"></i>首页
                         </NavLink>
                     </li>
@@ -26,7 +26,7 @@ class Footer extends Component{
                     </li>
                     <li>
                         {/* <NavLink to={`/user/${user.id}`}> */}
-                        <NavLink to="/topic">
+                        <NavLink to="/signin">
                              <i className="iconfont icon-wode"></i>我的
                         </NavLink>
                     </li>

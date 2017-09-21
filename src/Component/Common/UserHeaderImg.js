@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import './UserHeaderImg.less';
+
 
  class UserHeadImg extends Component {
     render() {

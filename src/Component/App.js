@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import Footer from './Common/Footer';
-import Home from './Home'
+
 
 class App extends Component{
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div>      

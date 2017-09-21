@@ -1,4 +1,4 @@
-import target from '../Config/Backend';
+import {target} from '../Config/Backend';
 
 class HttpService{
     static _DEFAULT={
