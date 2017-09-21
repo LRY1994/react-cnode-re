@@ -59,4 +59,4 @@ class SignIn extends Component {
 
 
 // export default SignIn;
-export default connect((state) => { return { User: state.User1 }; }, action('User'))(SignIn); //连接redux
+export default connect((state) => { return { User: state.User }; }, action())(SignIn); //连接redux

@@ -13,6 +13,7 @@ import GetNextPage from 'get-next-page';
 const HomeContainer =(WrappedComponent,setting)=>{
 
     var _DEFAULT={
+        id:'',//reducerId
         type:'GET',
         url:'',
         data:null,
@@ -21,32 +22,36 @@ const HomeContainer =(WrappedComponent,setting)=>{
     };
 
     setting=Object.assign({},_DEFAULT,setting);
-
+   
+/**path,action, state,*/
     class Main extends Component{
-        static defaultProps = { setting }
+        static defaultProps = { setting }//自己的props
         constructor(props){
-            super(props);
+            super(props);//继承来的props
+            // console.log(props);
             this.initState =(props)=>{
                 var {state, location} = props;
                 var {pathname, search} = location;
                 this.path = pathname + search;
                 
-
+                /********这段不能理解********* */
                 if (typeof this.action == 'undefined' && location.action == 'PUSH') {
                     this.action = false;
-                    console.log(false);
+                    // console.log('false');
                 } else {
-                    this.action = true;
-                    
+                    this.action = true;//一直都是这个
+                    // console.log('true');
                 }
 
                 if (typeof state.path[this.path] === 'object' && state.path[this.path].path === this.path && this.action) {
                     this.state = state.path[this.path];
+                    // console.log('oo')
                 } else {
                     this.state = merged(state.defaults); //数据库不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
                     this.state.path = this.path;
                     this.action = false;
                 }
+                 /***************** */
             }
             //componentDidMount,componentDidUpdate
             this.readyDOM = () => {
@@ -69,7 +74,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.start = () => {
                 this.state.loadAnimation = true;
                 this.state.loadMsg = '正在加载中...';
-                this.props.setState(this.state);
+                this.props.setState(this.state);//reducer
             }
 
             /**
@@ -80,7 +85,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.load = (res) => {
                 var {state } = this;
                 var {data} = res;
-                if (!data.length && data.length < this.props.limit) {
+                if (!data.length && data.length < setting.data.limit) {
                     state.nextBtn = false;
                     state.loadMsg = '没有了';
                 } else {
@@ -153,6 +158,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.readyDOM();
         }
         componentWillReceiveProps(np) {
+           //np就是接收到的props
             var {location} = np;
             var {pathname, search} = location;
             var path = pathname + search;
@@ -184,8 +190,9 @@ const HomeContainer =(WrappedComponent,setting)=>{
 
 
      }
+    
 
-     return connect((state) => { return { state: state[setting.id], User: state.User1 } }, action(action.id))(Main); //连接redux
+     return connect((state) => { return { state: state[setting.id], User: state.User1 } }, action())(Main); //连接redux
 
 
 }

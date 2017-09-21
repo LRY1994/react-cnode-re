@@ -8,11 +8,9 @@ import queryString from 'query-string';
 
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
+    
     render() {
-        var {data, loadAnimation, loadMsg} = this.props.state;
+        var {data} = this.props.state;
         var tab = queryString.parse(this.props.params).tab || 'all';
         return (
             <div className="index-list-box">

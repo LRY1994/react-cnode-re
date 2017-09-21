@@ -10,16 +10,16 @@ class Nav extends Component{
             <nav className="index-nav">
                 <ul data-flex="box:mean">
                     <li> 
-                        <NavLink to='/?tab=all' activeClassName="active">全部</NavLink>                                                   
+                        <NavLink to='/home?tab=all' activeClassName="active">全部</NavLink>                                                   
                     </li>
                     <li>
-                        <NavLink to='/?tab=good'activeClassName="active">精华</NavLink>                                                
+                        <NavLink to='/home?tab=good'activeClassName="active">精华</NavLink>                                                
                     </li>
                     <li>
-                        <NavLink to='/?tab=share'activeClassName="active">问答</NavLink>                                                   
+                        <NavLink to='/home?tab=share'activeClassName="active">问答</NavLink>                                                   
                     </li>
                     <li>
-                        <NavLink to='/?tab=job'activeClassName="active">招聘</NavLink>                                                 
+                        <NavLink to='/home?tab=job'activeClassName="active">招聘</NavLink>                                                 
                     </li>
                 </ul>
                 
