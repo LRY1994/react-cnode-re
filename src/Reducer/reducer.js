@@ -48,16 +48,22 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
                 }, setting);
                 return {
                     defaults,
-                    path: {}
+                    memory: {}
                 };
             },
-            setState: (state, target) => {
-                state.path[target.path] = target;
+            //这里改变了state,引起了HomeContainer的props改变，
+            //所以引起了HomeContainer的componentWillReceiveProps调用，
+           //每次调用reducer就会引起props改变，这是redux内部自动实现的
+           //和User的setStateActionAction不一样，所以重新定义
+           setStateAction: (state, target) => {
+                // console.log('setState')
+                state.memory[target.path] = target;//state是一个数组，存放每个tab内容的数据和滚动条位置
                 return merged(state);
             }
         }
+        //Reducer
         return (state = {}, action = {}) => {
-            
+            console.log(state)
             if (action._ID && action._ID !== _ID) {
                 
                 return state;
@@ -73,7 +79,13 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
     }
 
     // reducer
-    const IndexList = Wrapper('IndexList', { page: 1, nextBtn: true, limit: 10, mdrender: false, data: [] }); //首页
+    const IndexList = Wrapper('IndexList', { 
+        page: 1, 
+        nextBtn: true,
+         limit: 10, 
+         mdrender: false, 
+         data: [] 
+        }); //首页
     const Topic = Wrapper('Topic'); //主题详情
     const MyMessages = Wrapper('MyMessages'); //消息
     const UserView = Wrapper('UserView', { tabIndex: 0 }); //用户详情

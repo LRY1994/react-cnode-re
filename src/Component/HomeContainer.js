@@ -43,11 +43,13 @@ const HomeContainer =(WrappedComponent,setting)=>{
                     // console.log('true');
                 }
 
-                if (typeof state.path[this.path] === 'object' && state.path[this.path].path === this.path && this.action) {
-                    this.state = state.path[this.path];
-                    // console.log('oo')
+                //从state.memory找出这个tab之前浏览的情况
+                if (typeof state.memory[this.path] === 'object' && state.memory[this.path].path === this.path && this.action) {
+                    this.state = state.memory[this.path];
+                  
                 } else {
-                    this.state = merged(state.defaults); //数据库不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
+                    //如果没有浏览过，就用默认值
+                    this.state = merged(state.defaults); //state.memory不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
                     this.state.path = this.path;
                     this.action = false;
                 }
@@ -57,13 +59,15 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.readyDOM = () => {
                 var {success, error} = this.props.setting;
                 var {scrollX, scrollY} = this.state;
-                if (this.get) return false; //已经加载过
+               
+                if (this.get) return false; //已经加载过，就不用再重新new一个，GetNextPage会自己监听，不用管
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
+                         
                 this.get = new GetNextPage(this.refs.dataload, {
                     url: target + this.getUrl(),
                     data: this.getData(),
-                    start: this.start,
-                    load: this.load,
+                    start: this.start,//第一次setStateAction
+                    load: this.load,//第二次setStateAction
                     error: this.error
                 });
             }
@@ -74,7 +78,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.start = () => {
                 this.state.loadAnimation = true;
                 this.state.loadMsg = '正在加载中...';
-                this.props.setState(this.state);//reducer
+                this.props.setStateAction(this.state);
             }
 
             /**
@@ -95,7 +99,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
                 Array.prototype.push.apply(state.data, data);
                 state.loadAnimation = false;
                 state.page = ++state.page;
-                this.props.setState(state);
+                this.props.setStateAction(state);//这个是Action.js里面的
             }
 
             /**
@@ -104,11 +108,11 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.error = () => {
                 this.state.loadAnimation = false;
                 this.state.loadMsg = '加载失败';
-                this.props.setState(this.state);
+                this.props.setStateAction(this.state);
             }
 
             /**
-             * url更改时
+             * url更改时,记录下滚动条位置，以方便回来这个地址的时候还是之前滚动条位置
              */
             //componentWillUnmount
             this.unmount = () => {
@@ -117,7 +121,10 @@ const HomeContainer =(WrappedComponent,setting)=>{
                 delete this.action;
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
-                this.props.setState(this.state);
+                console.log('unmount:')               
+                
+                this.props.setStateAction(this.state);
+               
             }
 
             /**
@@ -154,10 +161,19 @@ const HomeContainer =(WrappedComponent,setting)=>{
 
             this.initState(this.props);
         }
+        componentWillMount(){
+            // console.log('componentWillMount'+this.path);
+        }
+        componentWillUpdate(){
+            // console.log('componentWillUpdate'+this.path);
+        }
         componentDidMount() {
+            // console.log('componentDidMount'+this.path);
             this.readyDOM();
         }
         componentWillReceiveProps(np) {
+            // console.log('componentWillReceiveProps'+this.path);
+            // console.log(np);
            //np就是接收到的props
             var {location} = np;
             var {pathname, search} = location;
@@ -170,20 +186,28 @@ const HomeContainer =(WrappedComponent,setting)=>{
 
         }
         componentDidUpdate() {
+            // console.log('componentDidUpdate'+this.path);
+            // console.log(this.props);
             this.readyDOM();
         }
         componentWillUnmount() {
+            // console.log('componentWillUnmount'+this.path);
+            
             this.unmount(); //地址栏已经发生改变，做一些卸载前的处理
         }
 
 
         render() {
+            // console.log('render'+this.path);
             var {loadAnimation, loadMsg} = this.state;
+            
             return (
                 <div>
                   
                     <WrappedComponent {...this.props} state={this.state}/>
-                    <div ref="dataload"><DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} /></div>
+                    <div ref="dataload">
+                        <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />
+                        </div>
                 </div>
             );
         }
@@ -192,7 +216,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
      }
     
 
-     return connect((state) => { return { state: state[setting.id], User: state.User1 } }, action())(Main); //连接redux
+     return connect((state) => { return { state: state[setting.id], User: state.User } }, action())(Main); //连接redux
 
 
 }
