@@ -63,7 +63,7 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
         }
         //Reducer
         return (state = {}, action = {}) => {
-            console.log(state)
+           
             if (action._ID && action._ID !== _ID) {
                 
                 return state;

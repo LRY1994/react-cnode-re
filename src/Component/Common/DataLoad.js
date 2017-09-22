@@ -20,3 +20,5 @@ export class DataLoad extends Component {
         );
     }
 }
+
+export default DataLoad;

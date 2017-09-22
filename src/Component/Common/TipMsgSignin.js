@@ -2,7 +2,7 @@
  * 提示登录
 
  */
-import './TipMsgSignin.less';
+
 import React,{Component} from 'react'
 import{NavLink} from 'react-router-dom'
 export class TipMsgSignin extends Component {
@@ -14,3 +14,4 @@ export class TipMsgSignin extends Component {
         );
     }
 }
+export default TipMsgSignin;

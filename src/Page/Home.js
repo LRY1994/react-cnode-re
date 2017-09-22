@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import Footer from './Common/Footer';
-import Nav from './Nav';
-import HomeContainer from './HomeContainer';
-import Lists from './Lists'
+import Footer from '../Component/Common/Footer';
+import Nav from '../Component/Home/Nav';
+import HomeContainer from '../Component/Home/HomeContainer';
+import Lists from '../Component/Home/Lists'
 import queryString from 'query-string';
 
 

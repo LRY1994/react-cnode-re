@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import action from '../Action/Action'
-import  {target}  from '../Config/Backend';
-import {DataLoad} from './Common/DataLoad' 
-import {merged} from '../Service/Tool'
+import action from '../../Action/Action'
+import  {target}  from '../../Config/Backend';
+import{DataLoad }from '../Common/DataLoad' 
+import {merged} from '../../Service/Tool'
 import GetNextPage from 'get-next-page';
 
 
@@ -35,26 +35,35 @@ const HomeContainer =(WrappedComponent,setting)=>{
                 this.path = pathname + search;
                 
                 /********这段不能理解********* */
-                if (typeof this.action == 'undefined' && location.action == 'PUSH') {
-                    this.action = false;
-                    // console.log('false');
-                } else {
-                    this.action = true;//一直都是这个
-                    // console.log('true');
-                }
+               
+                // if (typeof this.action == 'undefined' && location.action == 'PUSH') {
+                //     this.action = false;
+                //     console.log(false);
+                // } else {
+                //     this.action = true;
+                    
+                // }
+
+                
 
                 //从state.memory找出这个tab之前浏览的情况
-                if (typeof state.memory[this.path] === 'object' && state.memory[this.path].path === this.path && this.action) {
-                    this.state = state.memory[this.path];
-                  
+               //但是这里/home和/home
+                if (typeof state.memory[this.path] === 'object'&& state.memory[this.path].path === this.path){                   
+                        this.state = state.memory[this.path];
+                 
                 } else {
                     //如果没有浏览过，就用默认值
                     this.state = merged(state.defaults); //state.memory不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
-                    this.state.path = this.path;
-                    this.action = false;
+                    // if(this.path=='/home'){
+                        // this.state.path='/home?tab=all';
+                    // }else{
+                        this.state.path=this.path;
+                    // }
+                        // this.action = false;
                 }
                  /***************** */
             }
+            
             //componentDidMount,componentDidUpdate
             this.readyDOM = () => {
                 var {success, error} = this.props.setting;
@@ -121,9 +130,9 @@ const HomeContainer =(WrappedComponent,setting)=>{
                 delete this.action;
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
-                console.log('unmount:')               
+                         
                 
-                this.props.setStateAction(this.state);
+                this.props.setStateAction(this.state);//把当前tab浏览情况放入memory数组
                
             }
 
@@ -182,7 +191,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
                 this.unmount(); //地址栏已经发生改变，做一些卸载前的处理
             }
 
-            this.initState(np);
+            this.initState(np);//接收新的prop就重新初始化state,重新全部渲染，因为react自己的机制不用担心render影响性能
 
         }
         componentDidUpdate() {
