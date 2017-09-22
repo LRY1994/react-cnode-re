@@ -14,24 +14,18 @@ import HttpService from '../../Service/HttpService'
  * @param {Object} mySetting
  * @returns
  */
-const Main = (mySetting) => {
-    var setting = {
+const TopicContainer =(WrappedComponent,setting)=>{
+    
+        var _DEFAULT={   
         id: '', //应用唯一id表示
         type: 'GET', //请求类型
         url: '', //请求地址
         stop: false, //true 拦截请求，false不拦截请求
-        data: null, //发送给服务器的数据
-        component: <div></div>, //数据回调给的组件
+        data: null, //发送给服务器的数据       
         success: (state) => { return state; }, //请求成功后执行的方法
         error: (state) => { return state; } //请求失败后执行的方法
     };
-
-    /**
-     * 覆盖默认设置
-     */
-    for (let key in mySetting) {
-        setting[key] = mySetting[key];
-    }
+    setting=Object.assign({},_DEFAULT,setting);
 
     /**
      * 组件入口
@@ -39,7 +33,7 @@ const Main = (mySetting) => {
      * @class Index
      * @extends {Component}
      */
-    class Index extends Component {
+    class Main extends Component {
         constructor(props) {
             super(props);
 
@@ -148,7 +142,7 @@ const Main = (mySetting) => {
             this.initState(this.props);
         }
         render() {
-            return <this.props.setting.component {...this.props} state={this.state} />;
+            return <WrappedComponent {...this.props} state={this.state} />;
         }
         /**
          * 在初始化渲染执行之后立刻调用一次，仅客户端有效（服务器端不会调用）。
@@ -189,10 +183,10 @@ const Main = (mySetting) => {
         }
 
     }
-    Index.defaultProps = { setting }
+    Main.defaultProps = { setting }
 
-    return connect((state) => { return { state: state[setting.id], User: state.User } }, action(action.id))(Index); //连接redux
+    return connect((state) => { return { state: state[setting.id], User: state.User } }, action(action.id))(Main); //连接redux
 }
 
 
-export default Main;
+export default TopicContainer;

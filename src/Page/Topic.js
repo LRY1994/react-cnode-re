@@ -12,7 +12,7 @@ import Article from '../Component/Topic/Article'
  * @class Main
  * @extends {Component}
  */
-class Main extends Component {
+class Topic extends Component {
     static contextTypes = {
         router: PropTypes.object.isRequired
     }
@@ -98,9 +98,9 @@ class Main extends Component {
     }
 }
 
-export default TopicContainer({
+export default TopicContainer(Topic,{
     id: 'Topic',  //应用关联使用的redux
-    component: Main, //接收数据的组件入口
+   
     url: (props, state) => {
         return '/api/v1/topic/' + (props.match.params.id || '');
     },
