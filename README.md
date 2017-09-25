@@ -283,6 +283,36 @@ tab=good的时候下拉
 17super()和super(props)的区别在于能否在子类prototype的constructor中调用this,props
 18首页用一个数组存储每个tab之前浏览的情况,但是这里有个情况，/home和/home?tab=all区别存储了
  
+19获取参数
+http://localhost:4000/home?ta...
+queryString.parse(props.location.search).tab
+http://localhost:4000/topic/5... 
+<Route path="users" component={Users}>
+<Route path="/user/:userId" component={User}/>
+</Route>
+<Link to={/user/${user.id}}>{user.name}</Link>
+	props.match.params. userId
+	
+20、props.dangerouslySetInnerHTML must be in the form {__html: ...}`
+dangerouslySetInnerHTML={{__html:content}}
+
+21:前往某个页面
+this.context.router.history.push({
+                    pathname: '/topic/' + res.topic_id
+                });
+		
+22任何想访问context里面的属性的组件都必须显式的指定一个contextTypes 的属性。如果没有指定改属性，那么组件通过 this.context 访问属性将会出错。
+
+23、npm run build的时候出错
+Webpack配置文件里面
+process.cwd()当前工作目录（Current Work Directory）
+
+24 this.context.router.push('/') ，注：这个写法会把跳转载入浏览器历史，若不想留下历史记录则可以 this.context.router.replace('/') 
+
+通过createHistory()方法生产的history和react-router中的history有什么区别？？？
+
+
+
 
 
 
