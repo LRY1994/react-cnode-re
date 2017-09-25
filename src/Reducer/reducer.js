@@ -57,6 +57,7 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
            //和User的setStateActionAction不一样，所以重新定义
            setStateAction: (state, target) => {
                 // console.log('setState')
+               
                 state.memory[target.path] = target;//state是一个数组，存放每个tab内容的数据和滚动条位置
                 return merged(state);
             }

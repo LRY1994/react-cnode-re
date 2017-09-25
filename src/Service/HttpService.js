@@ -73,9 +73,9 @@ class HttpService{
             }
 
             if(xhr.status>=200&&xhr.status<300){
-                config.success&&config.success(response,xhr);
+                config.success&&config.success(response,config,xhr);
             }else{
-                config.error&&config.error(xhr);
+                config.error&&config.error(config,xhr);
             }
 
 
@@ -83,6 +83,7 @@ class HttpService{
 
         }
     }
+    return xhr;//这句话没加导致this.get老是undefined
 
 }
 

@@ -1,8 +1,7 @@
 import React,{Component} from 'react';
-import Footer from '../Component/Common/Footer';
-import Nav from '../Component/Home/Nav';
-import HomeContainer from '../Component/Home/HomeContainer';
-import Lists from '../Component/Home/Lists'
+import {Footer,GetNextPageContainer} from '../Common/Common'
+import Nav from './Nav';
+import Lists from './Lists'
 import queryString from 'query-string';
 
 
@@ -26,7 +25,7 @@ class Home extends Component {
 
 // export default Home;
 
-export default HomeContainer(Home,{
+export default GetNextPageContainer(Home,{
     id: 'IndexList',  //应用关联使用的redux 
     url: '/api/v1/topics',
     data: (props, state) => { //发送给服务器的数据

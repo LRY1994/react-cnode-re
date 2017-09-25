@@ -14,7 +14,7 @@ import HttpService from '../../Service/HttpService'
  * @param {Object} mySetting
  * @returns
  */
-const TopicContainer =(WrappedComponent,setting)=>{
+const GetDataContainer =(WrappedComponent,setting)=>{
     
         var _DEFAULT={   
         id: '', //应用唯一id表示
@@ -34,6 +34,7 @@ const TopicContainer =(WrappedComponent,setting)=>{
      * @extends {Component}
      */
     class Main extends Component {
+        static defaultProps = { setting }
         constructor(props) {
             super(props);
 
@@ -50,7 +51,7 @@ const TopicContainer =(WrappedComponent,setting)=>{
                 if (typeof state.memory[this.path] === 'object' && state.memory[this.path].path === this.path) {
                     this.state = state.memory[this.path];
                 } else {
-                    this.state = merged(state.defaults); //数据库不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
+                    this.state = merged(state.defaults); //数组不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
                     this.state.path = this.path;
                 }
 
@@ -62,6 +63,7 @@ const TopicContainer =(WrappedComponent,setting)=>{
             this.readyDOM = () => {
                 var {success, error} = this.props.setting;
                 var {scrollX, scrollY} = this.state;
+                console.log(this.get);
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
                 if (this.testStop()) return false; //请求被拦截
@@ -183,10 +185,10 @@ const TopicContainer =(WrappedComponent,setting)=>{
         }
 
     }
-    Main.defaultProps = { setting }
+   
 
-    return connect((state) => { return { state: state[setting.id], User: state.User } }, action(action.id))(Main); //连接redux
+    return connect((state) => { return { state: state[setting.id], User: state.User } }, action())(Main); //连接redux
 }
 
 
-export default TopicContainer;
+export default GetDataContainer;

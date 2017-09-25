@@ -1,13 +1,13 @@
 import React ,{Component} from 'react';
 import {BrowerRouter,IndexRoute,Switch,Route,Redirect ,Router} from 'react-router-dom';
-import Home from '../Page/Home';
-import UserView from '../Component/UserView';
-import MyMessage from '../Component/MyMessage';
-import Topic from '../Page/Topic'
-import TopicCreate from '../Component/TopicCreate';
+import Home from '../Component/Home/Home';
+import UserView from '../Component/My/UserView';
+import MyMessage from '../Component/My/MyMessage';
+import Topic from '../Component/Topic/Topic'
+import TopicCreate from '../Component/Topic/TopicCreate';
 import SignIn from '../Component/SignIn';
 import SignOut from '../Component/SignOut';
-import App from '../Component/App';
+
 import createBrowserHistory from 'history/createBrowserHistory';
 const routes=[
     

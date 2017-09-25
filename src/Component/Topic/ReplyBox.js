@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Tool} from '../../Service/Tool';
+import HttpService from '../../Service/HttpService';
 import PropTypes from 'prop-types';
 /**
  * 回复框
@@ -37,10 +37,10 @@ class ReplyBox extends Component {
                 return alert('回复内容不能为空！');
             }
             data.content += '\n\r<br><br>来自<a href="https://lzxb.github.io/react-cnode/" target="_blank">react-cnode手机版</a>';
-            Tool.post(`/api/v1//topic/${data.id}/replies`, data, (res) => {
+            HttpService.post(`/api/v1//topic/${data.id}/replies`, data, (res) => {
                 this.setState({ btnname: '回复成功，刷新页面中..' });
                 this.refs.content.value = '';
-                Tool.get(`/api/v1//topic/${data.id}`, {}, (res) => {
+                HttpService.get(`/api/v1//topic/${data.id}`, {}, (res) => {
                     this.props.reLoadData(res.data); //刷新页面
                     this.setState({ btnname: '回复' });
                 }, () => {

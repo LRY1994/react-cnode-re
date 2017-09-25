@@ -9,6 +9,7 @@ export class Header extends Component {
     }
     render() {
         let {title, leftTo, leftIcon, rightTo, rightIcon, rightClick } = this.props;
+        // console.log(this.props);
         let left = null;
         if (leftTo && leftIcon) {
             left = (

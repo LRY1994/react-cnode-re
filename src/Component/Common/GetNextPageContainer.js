@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {NavLink as Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 import action from '../../Action/Action'
 import  {target}  from '../../Config/Backend';
-import{DataLoad }from '../Common/DataLoad' 
+import{DataLoad }from '../Common/Common' 
 import {merged} from '../../Service/Tool'
 import GetNextPage from 'get-next-page';
 
@@ -62,6 +62,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
                         // this.action = false;
                 }
                  /***************** */
+                //  console.log(state.memory)
             }
             
             //componentDidMount,componentDidUpdate
@@ -127,7 +128,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
             this.unmount = () => {
                 this.get.end();
                 delete this.get;
-                delete this.action;
+                // delete this.action;
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
                          

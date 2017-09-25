@@ -4,10 +4,8 @@ import ReList from './ReplyList'
 import { Tool} from '../../Service/Tool';
  import ReplyBox from './ReplyBox'
 
-import TipMsgSignin from '../Common/TipMsgSignin';
-import UserHeadImg from '../Common/UserHeadImg';
-
-import TabIcon from '../Common/TabIcon';
+ import { TabIcon, TipMsgSignin,UserHeadImg} from '../Common/Common'
+ 
 
 
 /**
@@ -22,11 +20,7 @@ class Article extends Component {
     }
     render() {
         var {id, title, create_at, visit_count, reply_count, content, replies, author} = this.props.state.data;
-        var createMarkup = () => {
-            return {
-                __html: content
-            };
-        }
+       
         var bottom = this.props.User ? <ReplyBox reLoadData={this.props.reLoadData} data={{ accesstoken: this.props.User.accesstoken, id }} /> : <TipMsgSignin />;
 
         return (
@@ -49,7 +43,9 @@ class Article extends Component {
                     </div>
                 </div>
                 <h2 className="tit2">{title}</h2>
-                <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup()} />
+                <div className="content markdown-body" dangerouslySetInnerHTML={{__html:content}} />
+                {/* <div className="content markdown-body">{content}</div> */}
+                
                 <h3 className="tit3">共<em>{replies.length}</em>条回复</h3>
                 <ReList reLoadData={this.props.reLoadData} id={id} list={replies} clickZan={this.props.clickZan} showReplyBox={this.props.showReplyBox} User={this.props.User} />
                 {bottom}

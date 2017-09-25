@@ -6,14 +6,14 @@ import action from '../Action/Action'
 
 
 class SignOut extends Component {
-    contextTypes = {
-        router: PropTypes.object.isRequired
+     static contextTypes = {
+        router: PropTypes.object.isRequired//这句不加会出错
     }
     constructor(props) {
         super(props);
         this.signout = () => {
             this.props.signin();
-            this.context.router.history.replace({ pathname: '/' });
+            this.context.router.history.replace({ pathname: '/home' });
         }
 
     }
@@ -33,4 +33,4 @@ class SignOut extends Component {
 
 
 
-export default connect((state) => { return { User: state.User }; }, action('User'))(SignOut); 
+export default connect((state) => { return { User: state.User }; }, action())(SignOut); 

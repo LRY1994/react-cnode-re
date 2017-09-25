@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Tool} from '../Service/Tool';
-import TopicContainer from '../Component/Topic/TopicContainer'
-import  Header from '../Component/Common/Header';
-import DataLoad from '../Component/Common/DataLoad';
-import Article from '../Component/Topic/Article'
+import { Tool} from '../../Service/Tool';
+import {GetDataContainer,Header,DataLoad} from '../Common/Common'
+
+import Article from './Article'
 /**
  * 模块入口
  * 
@@ -76,12 +75,12 @@ class Topic extends Component {
          */
         this.reLoadData = (data) => {
             this.props.state.data = data;
-            this.props.setState(this.props.state);
+            this.props.setStateAction(this.props.state);
         }
 
     }
     render() {
-        var {data, loadAnimation, loadMsg, id} = this.props.state;
+        var {data, loadAnimation, loadMsg} = this.props.state;
         var main = data ?
          <Article {...this.props} 
                 reLoadData={this.reLoadData} 
@@ -98,7 +97,7 @@ class Topic extends Component {
     }
 }
 
-export default TopicContainer(Topic,{
+export default GetDataContainer(Topic,{
     id: 'Topic',  //应用关联使用的redux
    
     url: (props, state) => {

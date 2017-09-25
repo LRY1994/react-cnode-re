@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import ReplyBox from './ReplyBox'
- import UserHeadImg from '../Common/UserHeadImg'
+import { UserHeadImg} from '../Common/Common'
+
 import {NavLink} from 'react-router-dom'
 import { Tool} from '../../Service/Tool';
 /**
