@@ -1,5 +1,5 @@
-import React ,{Component} from 'react';
-import {BrowerRouter,IndexRoute,Switch,Route,Redirect ,Router} from 'react-router-dom';
+import React  from 'react';
+import {Switch,Route,Redirect ,Router} from 'react-router-dom';
 import Home from '../Component/Home/Home';
 import UserView from '../Component/My/UserView';
 import MyMessage from '../Component/My/MyMessage';

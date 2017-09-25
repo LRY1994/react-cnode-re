@@ -1,8 +1,6 @@
 import {Tool,merged} from '../Service/Tool';
 
-// action types
-const SIGNIN_SUCCESS= 'SIGNIN_SUCCESS'//登陆成功
-const SIGNIN = 'SIGNOUT'//退出
+
 
 
 // reducer

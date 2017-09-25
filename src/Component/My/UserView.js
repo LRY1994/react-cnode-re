@@ -20,7 +20,7 @@ class Main extends Component {
         }
     }
     render() {
-        var {data, loadAnimation, loadMsg, id, tabIndex} = this.props.state;
+        var {data, loadAnimation, loadMsg, tabIndex} = this.props.state;
         let { User, match} = this.props;
         let params = match.params;
         User = User ? User : {};

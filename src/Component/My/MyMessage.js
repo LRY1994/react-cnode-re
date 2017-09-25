@@ -12,7 +12,7 @@ import { DataLoad,  Header, TipMsgSignin, Footer, UserHeadImg ,GetDataContainer}
 class MyMessage extends Component {
     render() {
         var {data, loadAnimation, loadMsg} = this.props.state;
-        var {User, params} = this.props;
+        var {User} = this.props;
         var main = null;
         if (!User) {
             main = <TipMsgSignin />
