@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Header} from './Common/Header'
 import HttpService from '../Service/HttpService';
-import action from '../Action/Action'
+// import action from '../Action/Action'
+import {signinSuccess} from '../Action/Action'
+
 class SignIn extends Component {
     static contextTypes = {
         router: PropTypes.object.isRequired
@@ -57,6 +59,21 @@ class SignIn extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      User: state.User
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        signinSuccess: (user) => {
+            dispatch(signinSuccess(user))
+        }
+    }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn); //连接redux
 
 // export default SignIn;
-export default connect((state) => { return { User: state.User }; }, action())(SignIn); //连接redux
+// export default connect((state) => { return { User: state.User }; }, action())(SignIn); //连接redux

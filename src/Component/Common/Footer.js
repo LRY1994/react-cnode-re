@@ -77,5 +77,12 @@ class Footer extends Component {
 
 
 
- export default connect((state) => { return { User: state.User }; }, action('User'))(Footer);
+const mapStateToProps = (state) => {
+    return {
+      User: state.User
+    }
+  }
+
+
+export default connect(mapStateToProps,null)(Footer);
 

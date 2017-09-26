@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Header from './Common/Header'
-import action from '../Action/Action'
+import {signin} from '../Action/Action'
 
 
 class SignOut extends Component {
@@ -31,6 +31,21 @@ class SignOut extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      User: state.User
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        signin: () => {
+            dispatch(signin())
+        }
+    }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignOut); 
 
 
-export default connect((state) => { return { User: state.User }; }, action())(SignOut); 
+// export default connect((state) => { return { User: state.User }; }, action())(SignOut); 

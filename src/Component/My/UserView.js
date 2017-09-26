@@ -15,6 +15,9 @@ class Main extends Component {
         super(props);
         this.state = this.props.state;
         this.tab = (tabIndex) => {
+            // this.setState({
+            //     tabIndex:tabIndex
+            // })
             this.state.tabIndex = tabIndex;
             this.props.setStateAction(this.state);
         }
@@ -24,7 +27,7 @@ class Main extends Component {
         let { User, match} = this.props;
         let params = match.params;
         User = User ? User : {};
-        console.log(params);
+        
         var main = data ? <Home data={data} tabIndex={tabIndex} tab={this.tab} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
         var title = params.username === User.loginname ? '个人中心' : params.username + '的个人中心';
         var footer = params.username === User.loginname ? <Footer index="3" /> : null;

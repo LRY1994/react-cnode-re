@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import queryString from 'query-string';
 import { connect } from 'react-redux';
-import action from '../../Action/Action';
+import {setStateAction} from '../../Action/Action';
 import {merged } from '../../Service/Tool';
 import HttpService from '../../Service/HttpService'
 
@@ -26,6 +26,7 @@ const GetDataContainer =(WrappedComponent,setting)=>{
         error: (state) => { return state; } //请求失败后执行的方法
     };
     setting=Object.assign({},_DEFAULT,setting);
+    
 
     /**
      * 组件入口
@@ -44,15 +45,20 @@ const GetDataContainer =(WrappedComponent,setting)=>{
              * @param {Object} props
              */
             this.initState = (props) => {
-                var {state, location} = props;
+                var {Data, location} = props;
                 var {pathname, search} = location;
                 this.path = pathname + search;
+               
 
-                if (typeof state.memory[this.path] === 'object' && state.memory[this.path].path === this.path) {
-                    this.state = state.memory[this.path];
+                if (typeof Data.memory[this.path] === 'object' && Data.memory[this.path].path === this.path) {
+                    this.state = Data.memory[this.path];
                 } else {
-                    this.state = merged(state.defaults); //数组不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
+                    this.state = merged(Data.defaults); //数组不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
+                    // this.setState({path:this.path});
+                    // console.log(this.state);//不对
                     this.state.path = this.path;
+                    console.log(this.state);//对的
+
                 }
 
             }
@@ -63,22 +69,33 @@ const GetDataContainer =(WrappedComponent,setting)=>{
             this.readyDOM = () => {
                 var {success, error} = this.props.setting;
                 var {scrollX, scrollY} = this.state;
-                console.log(this.get);
+                
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
                 if (this.testStop()) return false; //请求被拦截
 
                 this.get = HttpService.get(this.getUrl(), this.getData(), (res) => {
+                  
+                    // this.setState({
+                    //     loadMsg:'加载成功',
+                    //     loadAnimation:false,
+                    //     data:res.data
+                    // });
                     this.state.loadMsg = '加载成功';
                     this.state.loadAnimation = false;
                     this.state.data = res.data;
+                   
                     this.props.setStateAction(success(this.state) || this.state);
                 }, (res, xhr) => {
-                    if (xhr.status == 404) {
+                    if (xhr.status === 404) {
+                        // this.setState({loadMsg:'话题不存在'});
                         this.state.loadMsg = '话题不存在';
                     } else {
+                        // this.setState({loadMsg:'加载失败'});
                         this.state.loadMsg = '加载失败';
                     }
+                    // this.setState({loadAnimation:false});
+                    
                     this.state.loadAnimation = false;
                     this.props.setStateAction(error(this.state) || this.state);
                 });
@@ -92,6 +109,10 @@ const GetDataContainer =(WrappedComponent,setting)=>{
                     this.get.end();
                     delete this.get;
                 }
+                // this.setState({
+                //     scrollX:window.scrollX,
+                //     scrollY:window.scrollY
+                // });
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
                 this.props.setStateAction(this.state);
@@ -164,6 +185,7 @@ const GetDataContainer =(WrappedComponent,setting)=>{
             if (this.path !== path) {
                 this.unmount(); //地址栏已经发生改变，做一些卸载前的处理
             }
+            
 
             this.initState(np);
 
@@ -186,8 +208,25 @@ const GetDataContainer =(WrappedComponent,setting)=>{
 
     }
    
-
-    return connect((state) => { return { state: state[setting.id], User: state.User } }, action())(Main); //连接redux
+    const mapStateToProps = (state) => {
+      
+        return {
+          User: state.User,
+          Data:state[setting.id]
+        }
+      }
+    
+      const mapDispatchToProps = (dispatch) => {
+        return {
+            setStateAction: (target) => {
+                dispatch(setStateAction(target))
+              
+            }
+        }
+      }
+    
+    return connect(mapStateToProps,mapDispatchToProps)(Main); //连接redux
+    // return connect((state) => { return { state: state[setting.id], User: state.User } }, action())(Main); //连接redux
 }
 
 

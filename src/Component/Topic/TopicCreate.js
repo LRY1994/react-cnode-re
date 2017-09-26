@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import action from '../../Action/Action';
+// import action from '../../Action/Action';
 import HttpService from '../../Service/HttpService'
 import { Footer, Header , TipMsgSignin} from '../Common/Common'
 
@@ -69,6 +69,7 @@ class Main extends Component {
          * @param {Object} e 事件出发的元素
          */
         this.tabInput = (e) => {
+            // this.setState({tab:e.target.value});                
             this.state.tab = e.target.value;
         }
 
@@ -78,6 +79,7 @@ class Main extends Component {
          * @param {Object} e //事件触发的元素
          */
         this.titleInput = (e) => {
+            // this.setState({title:e.target.value});
             this.state.title = e.target.value;
         }
 
@@ -87,6 +89,7 @@ class Main extends Component {
          * @param {Object} e //事件触发的元素
          */
         this.contentInput = (e) => {
+            // this.setState({content:e.target.value});
             this.state.content = e.target.value;
         }
 
@@ -141,4 +144,13 @@ class NewTopic extends Component {
     }
 }
 
-export default connect((state) => { return { User: state.User } }, action())(Main); //连接redux
+const mapStateToProps = (state) => {
+    return {
+      User: state.User
+    }
+  }
+
+
+export default connect(mapStateToProps,null)(Main); //连接redux
+
+// export default connect((state) => { return { User: state.User } }, action())(Main); //连接redux

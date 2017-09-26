@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import action from '../../Action/Action'
+import {setStateAction} from '../../Action/Action'
 import  {target}  from '../../Config/Backend';
 import{DataLoad }from '../Common/Common' 
 import {merged} from '../../Service/Tool'
@@ -57,6 +57,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
                     // if(this.path=='/home'){
                         // this.state.path='/home?tab=all';
                     // }else{
+                        // this.setState({path:this.path});
                         this.state.path=this.path;
                     // }
                         // this.action = false;
@@ -67,7 +68,7 @@ const HomeContainer =(WrappedComponent,setting)=>{
             
             //componentDidMount,componentDidUpdate
             this.readyDOM = () => {
-                var {success, error} = this.props.setting;
+                // var {success, error} = this.props.setting;
                 var {scrollX, scrollY} = this.state;
                
                 if (this.get) return false; //已经加载过，就不用再重新new一个，GetNextPage会自己监听，不用管
@@ -86,6 +87,10 @@ const HomeContainer =(WrappedComponent,setting)=>{
              * 请求开始
              */
             this.start = () => {
+                // this.setState({
+                //     loadAnimation:true,
+                //     loadMsg:'正在加载中...'
+                // })
                 this.state.loadAnimation = true;
                 this.state.loadMsg = '正在加载中...';
                 this.props.setStateAction(this.state);
@@ -116,6 +121,10 @@ const HomeContainer =(WrappedComponent,setting)=>{
              * 请求失败时
              */
             this.error = () => {
+                // this.setState({
+                //     loadAnimation:false,
+                //     loadMsg:'加载失败'
+                // })
                 this.state.loadAnimation = false;
                 this.state.loadMsg = '加载失败';
                 this.props.setStateAction(this.state);
@@ -129,6 +138,10 @@ const HomeContainer =(WrappedComponent,setting)=>{
                 this.get.end();
                 delete this.get;
                 // delete this.action;
+                // this.setState({
+                //     scrollX : window.scrollX,
+                //     scrollY : window.scrollY
+                // })
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
                          
@@ -224,9 +237,24 @@ const HomeContainer =(WrappedComponent,setting)=>{
 
 
      }
+     const mapStateToProps = (state) => {
+        return {
+          User: state.User,
+          state:state[setting.id]
+        }
+      }
     
+      const mapDispatchToProps = (dispatch) => {
+        return {
+            setStateAction: (data) => {
+                dispatch(setStateAction(data))
+            }
+        }
+      }
+      return connect(mapStateToProps,mapDispatchToProps)(Main); //连接redux
+      
 
-     return connect((state) => { return { state: state[setting.id], User: state.User } }, action())(Main); //连接redux
+    //  return connect((state) => { return { state: state[setting.id], User: state.User } }, action())(Main); //连接redux
 
 
 }
