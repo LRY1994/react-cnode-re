@@ -13,7 +13,7 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
             case 'signin': //退出
                 Tool.removeLocalItem('User');
                 return null;
-                
+
             default:            
                return state;
         }
@@ -21,7 +21,7 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
     }
 
    
-    const Wrapper = (_ID = '', setting = {}) => {
+    const Wrapper = (setting = {}) => {
         var _DEFAULT ={
             path: '', //当前页面的href
             loadAnimation: true, //true显示加载动画，false 不显示加载动画
@@ -65,16 +65,16 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
     }
 
     // reducer
-    const IndexList = Wrapper('IndexList', { 
+    const IndexList = Wrapper({ 
         page: 1, 
         nextBtn: true,
          limit: 10, 
          mdrender: false, 
          data: [] 
         }); //首页
-    const Topic = Wrapper('Topic'); //主题详情
-    const MyMessages = Wrapper('MyMessages'); //消息
-    const UserView = Wrapper('UserView', { tabIndex: 0 }); //用户详情
+    const Topic = Wrapper(); //主题详情
+    const MyMessages = Wrapper(); //消息
+    const UserView = Wrapper({ tabIndex: 0 }); //用户详情
 
 
 
