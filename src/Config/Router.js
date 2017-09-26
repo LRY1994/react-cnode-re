@@ -46,7 +46,7 @@ const routes=[
         component:UserView
     },
     {
-        path:'/my/message',
+        path:'/my/messages',
         exact:false,
         component:MyMessage
     },
