@@ -415,6 +415,24 @@ process.cwd()当前工作目录（Current Work Directory）
 
 24. this.context.router.push('/') ，注：这个写法会把跳转载入浏览器历史，若不想留下历史记录则可以 this.context.router.replace('/') 
 
+最后我把源码里面的redux形式改成这样connect(mapStateToProps,mapDispatchToProps)(SignIn)这种形式，在网上看好像大家也比较接受这种形式
+```
+const mapStateToProps = (state) => {
+    return {
+      User: state.User
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        signinSuccess: (user) => {
+            dispatch(signinSuccess(user))
+        }
+    }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn); //连接redux
+```
 
 ### 疑问：
 通过createHistory()方法生产的history和react-router中的history有什么区别？？？
