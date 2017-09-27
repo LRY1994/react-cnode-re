@@ -128,7 +128,7 @@ var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHisto
 5.render 方法必须要返回一个 JSX 元素。而且必须要用一个外层的 JSX 元素把所有内容包裹起来。返回并列多个 JSX 元素是不合法的
 
 6.{this.props.children}相当于angular的<ui-view>
-![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/1.jpg)
+![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/1.jpg)
 参考 https://segmentfault.com/q/1010000009616045
 react-router4没有indexRoute了。 react-router4版本中路由的本质变成了React组件，也就是自定义标签。所以你可以像使用组件一样是用路由。那么嵌套路由无非就是组件嵌套的写法（自定义标签嵌套而已）
 
@@ -142,11 +142,11 @@ react-router4没有indexRoute了。 react-router4版本中路由的本质变成�
 这里用react-router-dom，用{this.props.children}渲染不出组件，放弃这种做法
 
 8.没有传入action 之前，会出现这个错误
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/2.jpg)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/2.jpg)
 
 9.想要在chrome控制台下查看react,出现这个问题
 proxyConsole.js:56 The previous state received by the reducer has unexpected type of "Function". Expected argument to be an object with the following keys: "User"
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/3.jpg)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/3.jpg)
 
 原因见以下链接
 https://stackoverflow.com/questions/38074154/redux-the-previous-state-received-by-the-reducer-has-unexpected-type-of-functi
@@ -237,7 +237,7 @@ connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])(组件
 
 
 13.在signin里面不connect的时候super(props)输出来的props是这样的，默认的props是 
-![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/4.jpg)
+![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/4.jpg)
 ```
 history:
 	action:"POP"/"PUSH"
@@ -267,29 +267,29 @@ staticContext:undefined
 
 connect之后多了User,和三个action setState,signin,signinSuccess
 
-![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/5.jpg)
+![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/5.jpg)
  
 我把default改成return null,User值会变化
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/6.png)
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/7.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/6.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/7.png)
  
 User为什么在props上？因为connect的时候取名叫做User
  
-![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/8.png)
+![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/8.png)
 
 14.在user reducer这里输出看看action有什么
 刚开始是这样的，应该是combineReducer的时候先占位，但是还没有装入
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/9.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/9.png)
 登录成功后两处输出是一样的， 
-![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/10.png)
+![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/10.png)
 Action
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/11.jpg)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/11.jpg)
 
 15.
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/12.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/12.png)
 验证成功，把reducer函数名称改一下
-  ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/13.png)
-  ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/14.png)
+  ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/13.png)
+  ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/14.png)
 
 16.高阶组件是一个函数（而不是组件）,原项目里面的GetNextPage.jx相当于IndexList的高阶组件，用到了get-next-page插件
 
@@ -325,35 +325,35 @@ This method is called when a component is being removed from the DOM:
 ```
 •	componentWillUnmount()
 ```
-![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/15.png)
+![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/15.png)
 
 打开localhost的时候，/home初始化，因为调用了两次setState,所以调用了两次componentWillReceiveProps, 
 Prop改变会自动触发componentWillReceiveProps, shouldComponentUpdate ,componentWillUpdate ,render,componentDidUpdate,每一次改变prop就会触发这些
 State改变需要使用setState方法设置，然后会自动调用shouldComponentUpdate,componentWillUpdate,render, componentDidUpdate()。跟Prop改变不同的是，state改变可能不会立即触发，他会和其他合并之后再触发
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/16.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/16.png)
  原因
-  ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/17.png)
-  ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/18.png)
+  ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/17.png)
+  ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/18.png)
 下拉的时候同样是两次
-  ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/19.png)
+  ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/19.png)
 接着切换为tab=good
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/20.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/20.png)
 这里多了一次是URL改变也触发了一次setState
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/21.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/21.png)
 tab=good的时候下拉
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/22.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/22.png)
 点击“发表”
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/23.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/23.png)
 再回来“首页”，
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/24.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/24.png)
 
 但是什么原理导致HomeContainer的prop改变？？ 每次调用action就会引起props改变，这是redux内部自动实现的
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/25.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/25.png)
 
 17.super()和super(props)的区别在于能否在子类prototype的constructor中调用this,props
 
 18.首页用一个数组存储每个tab之前浏览的情况,但是这里有个情况，/home和/home?tab=all区别存储了
- ![Aaron Swartz](raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/26.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/26.png)
 
 19.获取参数方式
 ```
