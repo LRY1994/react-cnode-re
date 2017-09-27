@@ -1,9 +1,9 @@
-#react-cnode-re
+# react-cnode-re
 参照http://react-china.org/t/webpack-react-react-router-redux-less-flex-css-es6-react-cnode/6332源码
 这里面写得有点乱，看不太明白，所以自己学着边学边做
 
 
-###搭建步骤
+### 搭建步骤
 ```
     1.搭建react项目结构，直接用官网的方法 create-react-app react-cnode-re
     2.添加less配置
@@ -11,7 +11,7 @@
 ```
 
 
-###用到的知识点
+### 用到的知识点
 
     1.react小书，里面讲得很通俗易懂 http://huziketang.com/books/react/
     2.布局使用flex.css，移动端flex布局神器，兼容微信，UC，webview等移动端主流浏览器08.10
@@ -88,7 +88,7 @@ setting参数如下
 
 ```
 
-###遇到的问题及得到的知识点
+### 遇到的问题及得到的知识点
 
 1.You should not use <Route> or withRouter() outside a <Router>
 源码里面是每个路由导航的Component都包含一个Rooter，我想要整个页面就用一个Footer，但是Footer里面包含了<Route>,<Route>必须包含在<Rooter>里面，所以不可以这样写
@@ -416,10 +416,10 @@ process.cwd()当前工作目录（Current Work Directory）
 24. this.context.router.push('/') ，注：这个写法会把跳转载入浏览器历史，若不想留下历史记录则可以 this.context.router.replace('/') 
 
 
-###疑问：
+### 疑问：
 通过createHistory()方法生产的history和react-router中的history有什么区别？？？
 
-###待解决
+### 待解决
 npm run build的时候出错
 
 
