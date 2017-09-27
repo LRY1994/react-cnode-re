@@ -127,7 +127,7 @@ var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHisto
 
 5.render 方法必须要返回一个 JSX 元素。而且必须要用一个外层的 JSX 元素把所有内容包裹起来。返回并列多个 JSX 元素是不合法的
 
-6.{this.props.children}相当于angular的<ui-view>
+6.{this.props.children}相当于angular的 <ui-view>
 
 ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/1.jpg)
 
