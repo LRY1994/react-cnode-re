@@ -1,36 +1,60 @@
+#react-cnode-re
 参照http://react-china.org/t/webpack-react-react-router-redux-less-flex-css-es6-react-cnode/6332源码
 这里面写得有点乱，看不太明白，所以自己学着边学边做
-搭建react项目结构，直接用官网的方法 create-react-app myapp
-使用create-react-app 创建的项目默认不支持less，以下增加less配置的步骤https://segmentfault.com/a/1190000010162614
-布局使用flex.css，移动端flex布局神器，兼容微信，UC，webview等移动端主流浏览器08.10
-npm install flex.css –save
-http://huziketang.com/books/react/
+###搭建步骤
+```
+    1.搭建react项目结构，直接用官网的方法 create-react-app react-cnode-re
+    2.添加less配置
+        使用create-react-app 创建的项目默认不支持less，按照https://segmentfault.com/a/1190000010162614配置
+```
+###用到的知识点
 
-flex属性大全
-dir：主轴方向
-    top：从上到下
-    right：从右到左
-    bottom：从上到下
-    left：从左到右（默认）
-main：主轴对齐方式
-    right：从右到左
-    left：从左到右（默认）
-    justify：两端对齐
-    center：居中对齐
-cross：交叉轴对齐方式
-    top：从上到下
-    bottom：从上到下
-    baseline：跟随内容高度对齐
-    center：居中对齐
-    stretch：高度并排铺满（默认）
-box：子元素设置
-    mean：子元素平分空间
-    first：第一个子元素不要多余空间，其他子元素平分多余空间
-    last：最后一个子元素不要多余空间，其他子元素平分多余空间
-    justify：两端第一个元素不要多余空间，其他子元素平分多余空间
+    1.react小书，里面讲得很通俗易懂 http://huziketang.com/books/react/
+    2.布局使用flex.css，移动端flex布局神器，兼容微信，UC，webview等移动端主流浏览器08.10
+         npm install flex.css –save
+
+        flex.css使用方法
+        dir：主轴方向
+             top：从上到下
+             right：从右到左
+            bottom：从上到下
+            left：从左到右（默认）
+        main：主轴对齐方式
+            right：从右到左
+            left：从左到右（默认）
+            justify：两端对齐
+             center：居中对齐
+        cross：交叉轴对齐方式
+            top：从上到下
+            bottom：从上到下
+            baseline：跟随内容高度对齐
+            center：居中对齐
+            stretch：高度并排铺满（默认）
+        box：子元素设置
+            mean：子元素平分空间
+            first：第一个子元素不要多余空间，其他子元素平分多余空间
+            last：最后一个子元素不要多余空间，其他子元素平分多余空间
+            justify：两端第一个元素不要多余空间，其他子元素平分多余空间
+
+    3.整个项目的基础结构就是
+        ```
+        <Provider store={store}>
+	        <Router history={history}>
+		        <Switch>
+			        <Route key=’’ path=’’ component=’’/>
+			        <Route key=’’ path=’’ component=’’/>
+			        ………………………………..
+		        </Switch>
+	        </Router>
+            </Provider>
+        ```
+
+
+###遇到的问题及得到的知识点
 
 1、You should not use <Route> or withRouter() outside a <Router>
 源码里面是每个路由导航的Component都包含一个Rooter，我想要整个页面就用一个Footer，但是Footer里面包含了<Route>,<Route>必须包含在<Rooter>里面，所以不可以这样写
+```
 render(
 <Provider store={store}>
     <div>
@@ -41,40 +65,31 @@ render(
 </Provider>,
 document.getElementById('root')
 );
-
+```
 2、 React.Children.only expected to receive a single React element child.
 <Router><Provider>里面只能有一个一级子节点,Provider的store是必须的，Router的history是必须的
+```
 History用这种方法创造
 import createBrowserHistory from 'history/createBrowserHistory';
 const history = createBrowserHistory();
+```
 好像还可以这样写。但是不知道有什么区别
+```
 var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
+```
 
-自己探索出来整个项目的结构就是
-<Provider store={store}>
-	<Router history={history}>
-		<Switch>
-			<Route key=’’ path=’’ component=’’/>
-			<Route key=’’ path=’’ component=’’/>
-			………………………………..
-		</Switch>
-	</Router>
-</Provider>
-
-3、修改react端口号
+3、修改react启动的端口号
 打开react项目的 package.json文件
 将 scripts中的start键值对
-  "start": "roadhog server"
+  "start": "node scripts/start.js",
   修改为
-  "start": "set PORT=3000&&roadhog server",
+  "start": "set PORT=3000&&node scripts/start.js",
 
-4、React并没有一个自己的Component处理网络请求，自己包装，如HttpService.js
+4、React并没有一个自己的Component处理网络请求，自己包装HttpService.js
 
 5、render 方法必须要返回一个 JSX 元素。而且必须要用一个外层的 JSX 元素把所有内容包裹起来。返回并列多个 JSX 元素是不合法的
 
 6、{this.props.children}相当于angular的<ui-view>
-
- 
 https://segmentfault.com/q/1010000009616045
 react-router4没有indexRoute了。 react-router4版本中路由的本质变成了React组件，也就是自定义标签。所以你可以像使用组件一样是用路由。那么嵌套路由无非就是组件嵌套的写法（自定义标签嵌套而已）
 
@@ -82,7 +97,7 @@ react-router4没有indexRoute了。 react-router4版本中路由的本质变成�
   <Route exact path="/" component={Home} />
   <Route path="topics" component={Topics} />
   <Route path="/topics/:id" component={Topic} />
-用{this.props.children}渲染不出组件，用的是react-router-dom
+这里用react-router-dom，用{this.props.children}渲染不出组件，放弃这种做法
 
 8、没有传入action 之前，会出现这个错误
  
