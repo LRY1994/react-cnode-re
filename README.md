@@ -51,17 +51,17 @@
 		        </Switch>
 	        </Router>
             </Provider>
-     
+        ```
     4.下拉动态加载用到时 get-next-page 插件
         她自己自动监听了这些事件，不用自己写触发事件，比如下拉的时候回自动拉取下一页数据
         this.monitorEvent = ['DOMContentLoaded', 'load', 'click', 'touchstart', 'touchend', 'haschange', 'online', 'pageshow', 'popstate', 'resize', 'storage', 'mousewheel', 'scroll'];
 
         只需要写好el,拉取的数据就会放在el 
         使用方法：
-
+        ```
         import GetNextPage from ‘get-next-page’
         new GetNextPage(el,setting)
-
+       
 
         setting参数如下
 
@@ -85,14 +85,14 @@
         load //加载成功时调用方法
         error  //开始加载时调用方法
         end  //加载完成时调用方法   
+    
 
-```
 
 ### 遇到的问题及得到的知识点
 
 1.You should not use <Route> or withRouter() outside a <Router>
 源码里面是每个路由导航的Component都包含一个Rooter，我想要整个页面就用一个Footer，但是Footer里面包含了<Route>,<Route>必须包含在<Rooter>里面，所以不可以这样写
-```
+
 render(
 <Provider store={store}>
     <div>
@@ -102,8 +102,8 @@ render(
     
 </Provider>,
 document.getElementById('root')
-);
-```
+)
+
 2. React.Children.only expected to receive a single React element child.
 <Router><Provider>里面只能有一个一级子节点,Provider的store是必须的，Router的history是必须的
 ```
