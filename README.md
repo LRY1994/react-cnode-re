@@ -53,18 +53,18 @@
             </Provider>
      
     4.下拉动态加载用到时 get-next-page 插件
-她自己自动监听了这些事件，不用自己写触发事件，比如下拉的时候回自动拉取下一页数据
- this.monitorEvent = ['DOMContentLoaded', 'load', 'click', 'touchstart', 'touchend', 'haschange', 'online', 'pageshow', 'popstate', 'resize', 'storage', 'mousewheel', 'scroll'];
+        她自己自动监听了这些事件，不用自己写触发事件，比如下拉的时候回自动拉取下一页数据
+        this.monitorEvent = ['DOMContentLoaded', 'load', 'click', 'touchstart', 'touchend', 'haschange', 'online', 'pageshow', 'popstate', 'resize', 'storage', 'mousewheel', 'scroll'];
 
-只需要写好el,拉取的数据就会放在el 
-使用方法：
-```
-import GetNextPage from ‘get-next-page’
-new GetNextPage(el,setting)
-```
+        只需要写好el,拉取的数据就会放在el 
+        使用方法：
 
-setting参数如下
-```
+        import GetNextPage from ‘get-next-page’
+        new GetNextPage(el,setting)
+
+
+        setting参数如下
+
         /*元素在可视区位置，符合其中一个条件就会触发加载机制*/
         
         top    //元素在顶部伸出的距离才加载
