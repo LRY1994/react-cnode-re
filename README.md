@@ -327,7 +327,9 @@ process.cwd()当前工作目录（Current Work Directory）
 通过createHistory()方法生产的history和react-router中的history有什么区别？？？
 
 
-
+25、使用this.setState会出现问题
+proxyConsole.js:56 Warning: setState(...): Can only update a mounted or mounting component. This usually means you called setState() on an unmounted component. This is a no-op. Please check the code for the Main component
+出现这个问题的话就用this.state=...形式赋值
 
 
 
