@@ -442,7 +442,7 @@ npm run build的时候出错
 Failed to minify the code from this file:
 ./~/get-next-page/dist/get-next-page.js:59
 Read more here: http://bit.ly/2tRViJ9
-这个是个人写的插件，可能还没那么完善
+原项目是自己写的webpack配置文件。我全是create-react-app自动生成的，不想改
 
 ```
 npm run build fails to minify
