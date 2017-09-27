@@ -295,8 +295,7 @@ Action
  ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/11.jpg)
 
 15.
- ![Aaron Swartz]
- (https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/12.png)
+ ![Aaron Swartz](https://raw.githubusercontent.com/LRY1994/react-cnode-re/master/pictrue_for_readme/12.png)
 
 验证成功，把reducer函数名称改一下
 
