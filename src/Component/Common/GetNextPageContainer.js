@@ -6,7 +6,9 @@ import {setStateAction} from '../../Action/Action'
 import  {target}  from '../../Config/Backend';
 import{DataLoad }from '../Common/Common' 
 import {merged} from '../../Service/Tool'
-import GetNextPage from 'get-next-page';
+// import GetNextPage from 'get-next-page';
+ import GetNextPage from '../../lib/get-next-page';
+
 
 
 

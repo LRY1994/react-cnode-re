@@ -437,10 +437,41 @@ export default connect(mapStateToProps,mapDispatchToProps)(SignIn); //连接redu
 ### 疑问：
 通过createHistory()方法生产的history和react-router中的history有什么区别？？？
 
-### 待解决
+### 待解决（已解决）
 npm run build的时候出错
+Failed to minify the code from this file:
+./~/get-next-page/dist/get-next-page.js:59
+Read more here: http://bit.ly/2tRViJ9
+这个是个人写的插件，可能还没那么完善
 
+```
+npm run build fails to minify
 
+You may occasionally find a package you depend on needs compiled or ships code for a non-browser environment.
+This is considered poor practice in the ecosystem and does not have an escape hatch in Create React App.
+
+To resolve this:
+
+Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled (retaining ES6 Modules).
+Fork the package and publish a corrected version yourself.
+If the dependency is small enough, copy it to your src/ folder and treat it as application code.
+Something Missing?
+
+```
+
+我这里用第三种方法，把get-netx-page.js放到/src/lib里面，相应的地方再改改，就可以了，npm run build之后就会生成build文件夹
+
+### 部署
+
+参考
+https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
+
+```
+npm install -g serve
+serve -s build
+```
+
+打开localhost:5000 ,成功
 
 
 
